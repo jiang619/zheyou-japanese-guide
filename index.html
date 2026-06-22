@@ -52,6 +52,18 @@
       background: radial-gradient(ellipse at 50% 50%, #f0dbbc 0%, transparent 60%);
       opacity: 0.60;
     }
+    .silk-layer--4 {
+      width: 120%; height: 120%;
+      bottom: 10%; left: -20%;
+      background: radial-gradient(ellipse at 60% 40%, #c49b6e 0%, transparent 55%);
+      opacity: 0.50;
+    }
+    .silk-layer--5 {
+      width: 150%; height: 150%;
+      top: -20%; right: -30%;
+      background: radial-gradient(ellipse at 40% 60%, #faf3e6 0%, transparent 60%);
+      opacity: 0.45;
+    }
 
     /* ······ 容器 ······ */
     .container {
@@ -395,6 +407,8 @@
     <div class="silk-layer silk-layer--1"></div>
     <div class="silk-layer silk-layer--2"></div>
     <div class="silk-layer silk-layer--3"></div>
+    <div class="silk-layer silk-layer--4"></div>
+    <div class="silk-layer silk-layer--5"></div>
   </div>
 
   <!-- 信封开场 -->
@@ -499,9 +513,11 @@
         var layers = document.querySelectorAll('.silk-layer')
         if (!layers.length) return
         var state = [
-          { x: 0, y: 0, s: 1, speed: 1.0, rangeX: 20, rangeY: 18, rangeS: 0.30 },
-          { x: 0, y: 0, s: 1, speed: 0.8, rangeX: 25, rangeY: 15, rangeS: 0.35 },
-          { x: 0, y: 0, s: 1, speed: 1.25, rangeX: 15, rangeY: 22, rangeS: 0.25 },
+          { x: 0, y: 0, s: 1, speed: 2.0, rangeX: 20, rangeY: 18, rangeS: 0.30 },
+          { x: 0, y: 0, s: 1, speed: 1.6, rangeX: 25, rangeY: 15, rangeS: 0.35 },
+          { x: 0, y: 0, s: 1, speed: 2.5, rangeX: 15, rangeY: 22, rangeS: 0.25 },
+          { x: 0, y: 0, s: 1, speed: 1.8, rangeX: 18, rangeY: 20, rangeS: 0.28 },
+          { x: 0, y: 0, s: 1, speed: 2.2, rangeX: 22, rangeY: 16, rangeS: 0.32 },
         ]
         var time = 0
         function animate() {
