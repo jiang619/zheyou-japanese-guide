@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>者右的日语入门资料</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: #ede3d6;
+      font-family: "Noto Serif SC", "Songti SC", serif;
+      font-weight: 200;
+      color: #3e3530;
+      padding: 0 16px 40px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ——— 丝绸涌动背景 ——— */
+    .silk {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .silk-layer {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.60;
+    }
+    .silk-layer--1 {
+      width: 160%; height: 160%;
+      top: -50%; left: -50%;
+      background: radial-gradient(ellipse at 40% 50%, #e8cba4 0%, transparent 60%);
+      opacity: 0.70;
+    }
+    .silk-layer--2 {
+      width: 140%; height: 140%;
+      bottom: -40%; right: -40%;
+      background: radial-gradient(ellipse at 50% 50%, #d4b58a 0%, transparent 55%);
+      opacity: 0.65;
+    }
+    .silk-layer--3 {
+      width: 130%; height: 130%;
+      top: 5%; left: 10%;
+      background: radial-gradient(ellipse at 50% 50%, #f0dbbc 0%, transparent 60%);
+      opacity: 0.60;
+    }
+
+    /* ······ 容器 ······ */
+    .container {
+      max-width: 580px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ······ 头部 ······ */
+    .header {
+      padding: 56px 0 8px;
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 2.1rem;
+      font-weight: 200;
+      letter-spacing: 0.12em;
+      color: #4a3f35;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+    .header .subtitle {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: #8a7d6c;
+      line-height: 1.8;
+      letter-spacing: 0.06em;
+      max-width: 460px;
+      margin: 0 auto;
+    }
+    .header .divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c9b89e, transparent);
+      margin: 24px auto 0;
+    }
+
+    /* ······ 卡片列表 ······ */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 32px 0;
+    }
+
+    /* ······ 单张卡片 ······ */
+    .card {
+      background: rgba(245, 236, 222, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 24px 24px 20px;
+      border: 1px solid rgba(200, 178, 150, 0.35);
+      box-shadow: 0 4px 20px rgba(140, 115, 85, 0.08), 0 1px 3px rgba(140, 115, 85, 0.05);
+      transition: box-shadow 0.35s ease, transform 0.35s ease;
+    }
+    .card:hover {
+      box-shadow: 0 12px 36px rgba(140, 115, 85, 0.10), 0 2px 6px rgba(140, 115, 85, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .card-head {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .card-id {
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: #b2946b;
+      letter-spacing: 0.04em;
+    }
+    .card-name {
+      font-size: 1.18rem;
+      font-weight: 400;
+      color: #4a3f35;
+      letter-spacing: 0.06em;
+    }
+    .card-sub {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: #a8947c;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .card-desc {
+      font-size: 0.88rem;
+      font-weight: 200;
+      color: #8a7d6c;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ······ 按钮 ······ */
+    .card-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: transparent;
+      border: 1px solid #d4c0a6;
+      color: #6b5d4d;
+    }
+    .card-btn:hover {
+      background: #d4c0a6;
+      color: #fdfaf5;
+      box-shadow: 0 4px 14px rgba(180, 155, 125, 0.25);
+    }
+    .card-btn:active {
+      transform: scale(0.97);
+    }
+    .card-btn .icon {
+      font-size: 1rem;
+      line-height: 1;
+    }
+    .card-btn.feedback {
+      background: #b2946b;
+      color: #fdfaf5;
+      border-color: #b2946b;
+      pointer-events: none;
+    }
+
+    /* ······ 页脚 ······ */
+    .footer {
+      text-align: center;
+      padding: 8px 0 32px;
+      font-size: 0.78rem;
+      font-weight: 200;
+      color: #b8aa98;
+      letter-spacing: 0.06em;
+      line-height: 2;
+    }
+    .footer .sep {
+      color: #d4c8b8;
+      margin: 0 6px;
+    }
+
+    /* ······ Toast 提示 ······ */
+    .toast {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: rgba(60, 50, 40, 0.88);
+      backdrop-filter: blur(10px);
+      color: #f5efe6;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      opacity: 0;
+      transition: all 0.4s ease;
+      z-index: 999;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ——— 信封开场（欧式典雅信封 · 背面钻石折纹）——— */
+    .env-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ede3d6;
+      cursor: pointer;
+      transition: opacity 0.8s ease;
+    }
+    .env-overlay.open {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .env-wrap {
+      position: relative;
+      width: 460px;
+      max-width: 92vw;
+      aspect-ratio: 3 / 2.1;
+      transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .env-overlay.open .env-wrap {
+      transform: translateY(-20px) scale(0.95);
+    }
+
+    /* 信封底纸 —— 仿手工 parchment */
+    .env-paper {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(162deg, #f7ede0 0%, #efe0ce 35%, #f5e8d6 70%, #faf0e2 100%);
+      border-radius: 3px;
+      box-shadow:
+        0 12px 44px rgba(130, 100, 70, 0.18),
+        0 3px 12px rgba(130, 100, 70, 0.08);
+    }
+
+
+    /* 轻微纸纹 */
+    .env-paper::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(190, 168, 140, 0.02) 3px, rgba(190, 168, 140, 0.02) 4px);
+      border-radius: 3px;
+      pointer-events: none;
+    }
+
+    /* 轻微边缘旧化 */
+    .env-wear {
+      position: absolute;
+      inset: 0;
+      border-radius: 3px;
+      box-shadow:
+        inset 0 0 0 1px rgba(170, 148, 122, 0.06),
+        inset 0 0 30px rgba(150, 125, 100, 0.02);
+      pointer-events: none;
+    }
+
+    /* — 文字 — */
+    .env-text {
+      position: absolute;
+      z-index: 3;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 9% 10% 6%;
+      pointer-events: none;
+    }
+    .env-greeting {
+      position: absolute;
+      top: 5%;
+      left: 7%;
+      font-size: 0.78rem;
+      font-weight: 200;
+      letter-spacing: 0.18em;
+      color: #8a7a67;
+    }
+    /* 白光晕 — 独立层，不被纸背景遮挡 */
+    .env-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 700px;
+      height: 350px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse at 50% 50%,
+        rgba(255,255,245,0.50) 0%,
+        rgba(255,255,245,0.25) 12%,
+        rgba(255,255,245,0.10) 25%,
+        rgba(255,255,245,0.04) 40%,
+        transparent 55%);
+      pointer-events: none;
+      animation: glowPulse 1.5s ease-in-out infinite;
+      z-index: 0;
+    }
+    .env-glow--2 {
+      width: 1100px;
+      height: 550px;
+      background: radial-gradient(ellipse at 50% 50%,
+        rgba(255,255,245,0.12) 0%,
+        rgba(255,255,245,0.05) 18%,
+        rgba(255,255,245,0.02) 35%,
+        transparent 50%);
+      animation: glowPulse2 2s ease-in-out infinite;
+    }
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.35); }
+    }
+    @keyframes glowPulse2 {
+      0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.5); }
+    }
+
+    .env-title {
+      font-family: "Noto Serif SC", "Songti SC", serif;
+      font-size: 1.7rem;
+      font-weight: 200;
+      letter-spacing: 0.12em;
+      color: #6b4c3b;
+      text-align: center;
+      line-height: 1.2;
+      margin-top: 12%;
+      white-space: nowrap;
+    }
+    .env-hint {
+      position: absolute;
+      bottom: 19%;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 0.65rem;
+      font-weight: 200;
+      color: #b8a692;
+      letter-spacing: 0.10em;
+    }
+
+    /* — 红蜡封（里凹外突）— */
+    
+      50% { opacity: 1; transform: scale(1.10); }
+    }
+
+    /* ······ 响应式 ······ */
+    @media (max-width: 400px) {
+      .header h1 { font-size: 1.7rem; }
+      .card { padding: 20px 18px 16px; }
+      .card-name { font-size: 1.05rem; }
+      .env-wrap { max-width: 94vw; }
+    }
+    @media (min-width: 640px) {
+      body { padding: 0 24px 60px; }
+      .header { padding: 72px 0 12px; }
+      .header h1 { font-size: 2.4rem; }
+      .cards { gap: 20px; padding: 40px 0; }
+      .card { padding: 28px 28px 24px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 丝绸涌动背景 -->
+  <div class="silk" aria-hidden="true">
+    <div class="silk-layer silk-layer--1"></div>
+    <div class="silk-layer silk-layer--2"></div>
+    <div class="silk-layer silk-layer--3"></div>
+  </div>
+
+  <!-- 信封开场 -->
+  <div id="envOverlay" class="env-overlay">
+    <div class="env-wrap">
+      <div class="env-paper">
+        <!-- 手工纸纹理 -->
+        <div class="env-wear"></div>
+
+        <!-- 钻石折纹 -->
+        <div class="env-flap"></div>
+        <div class="env-fold-bot"></div>
+
+        <!-- 文字 -->
+        <div class="env-text">
+          <div class="env-glow"></div>
+          <div class="env-glow env-glow--2"></div>
+          <div class="env-greeting">敬 启</div>
+          <div class="env-title">请开启你的日语之旅</div>
+          <div class="env-hint">— 点击打开 —</div>
+        </div>
+
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast 提示 -->
+  <div id="toast" class="toast"></div>
+
+  <div class="container">
+    <header class="header">
+      <h1>者右的日语入门资料</h1>
+      <p class="subtitle">
+        感谢购入，这套资料帮助过 50+ 零基础学习者建立整体认知，
+        少走弯路，认知效率提高 30%
+      </p>
+      <div class="divider"></div>
+    </header>
+
+    <div id="cardsContainer" class="cards"></div>
+    <footer class="footer" id="footer"></footer>
+  </div>
+
+  <script>
+    /* ── 数据配置 ── */
+    var siteData = {
+      title: '者右的日语入门资料',
+      subtitle: '感谢购入，这套资料帮助过 50+ 零基础学习者建立整体认知，少走弯路，认知效率提高 30%',
+      modules: [
+        {
+          id: '①',
+          name: '日语学习人格测试',
+          desc: '一分钟测出你适不适合学日语',
+          type: 'copy-url',
+          url: 'https://jiang619.github.io/japanese-learning-test/日语学习人格测试.html',
+          copyLabel: '/日语学习人格测试.https',
+        },
+        {
+          id: '②',
+          name: '日本语概要',
+          subtitle: '学习路线图 + 笔记',
+          desc: '构建日语学习的整体认知框架',
+          type: 'download',
+          file: 'files/日本语概要.pdf',
+        },
+        {
+          id: '③',
+          name: '七天启动计划',
+          desc: '七天快速入门，建立学习节奏',
+          type: 'download',
+          file: 'files/七天启动计划.pdf',
+        },
+        {
+          id: '④',
+          name: '初学者常见避坑指南',
+          desc: '常见误区与正确方法，少走弯路',
+          type: 'download',
+          file: 'files/初学者常见避坑指南.pdf',
+        },
+      ],
+      footer: {
+        author: '者右',
+        douyin: '98112178840',
+        xiaohongshu: '1575073952',
+        version: 'v1.0',
+        updated: '2026.06',
+      },
+    }
+
+    /* ── 主逻辑 ── */
+    ;(function () {
+      'use strict'
+
+      const container = document.getElementById('cardsContainer')
+      const footerEl = document.getElementById('footer')
+      const toastEl = document.getElementById('toast')
+      let toastTimer = null
+
+      /* —— 丝绸动画 —— */
+      function startSilk() {
+        var layers = document.querySelectorAll('.silk-layer')
+        if (!layers.length) return
+        var state = [
+          { x: 0, y: 0, s: 1, speed: 0.006, rangeX: 20, rangeY: 18, rangeS: 0.30 },
+          { x: 0, y: 0, s: 1, speed: 0.004, rangeX: 25, rangeY: 15, rangeS: 0.35 },
+          { x: 0, y: 0, s: 1, speed: 0.008, rangeX: 15, rangeY: 22, rangeS: 0.25 },
+        ]
+        var time = 0
+        function animate() {
+          time++
+          for (var i = 0; i < layers.length && i < state.length; i++) {
+            var st = state[i]
+            var t = time * st.speed + i * 2.0
+            layers[i].style.transform = 'translate(' + (Math.sin(t * 0.5) * st.rangeX) + '%,' + (Math.cos(t * 0.4) * st.rangeY) + '%) scale(' + (1 + Math.sin(t * 0.3) * st.rangeS) + ')'
+          }
+          requestAnimationFrame(animate)
+        }
+        animate()
+      }
+
+      function showToast(msg) {
+        if (toastTimer) clearTimeout(toastTimer)
+        toastEl.textContent = msg
+        toastEl.classList.add('show')
+        toastTimer = setTimeout(function () { toastEl.classList.remove('show') }, 2000)
+      }
+
+      function downloadFile(filePath) {
+        var a = document.createElement('a')
+        a.href = filePath
+        a.download = filePath.split('/').pop()
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+      }
+
+      function copyUrl(url, label) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(function () {
+            showToast('已复制：' + label)
+          }).catch(function () { fallbackCopy(url, label) })
+        } else {
+          fallbackCopy(url, label)
+        }
+      }
+      function fallbackCopy(text, label) {
+        var ta = document.createElement('textarea')
+        ta.value = text
+        ta.style.position = 'fixed'
+        ta.style.left = '0'
+        ta.style.top = '0'
+        ta.style.width = '100px'
+        ta.style.height = '50px'
+        ta.style.opacity = '0'
+        document.body.appendChild(ta)
+        ta.focus()
+        ta.select()
+        ta.setSelectionRange(0, text.length)
+        try {
+          if (document.execCommand('copy')) { showToast('已复制：' + label) }
+          else { showToast('长按网址手动复制') }
+        } catch (e) { showToast('长按网址手动复制') }
+        document.body.removeChild(ta)
+      }
+
+      function openFile(filePath) {
+        var a = document.createElement('a')
+        a.href = filePath
+        a.target = '_blank'
+        a.rel = 'noopener'
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+      }
+
+      function handleBtnClick(mod, btnEl) {
+        if (btnEl.classList.contains('feedback')) return
+        if (mod.type === 'copy-url') {
+          copyUrl(mod.url, mod.copyLabel || '网址')
+          btnEl.classList.add('feedback')
+          btnEl.innerHTML = '<span class="icon">✓</span> 已保存'
+        } else if (mod.type === 'download') {
+          if (location.protocol === 'file:') {
+            openFile(mod.file)
+          } else {
+            downloadFile(mod.file)
+          }
+          btnEl.classList.add('feedback')
+          btnEl.innerHTML = '<span class="icon">✓</span> 已下载'
+        }
+        setTimeout(function () {
+          btnEl.classList.remove('feedback')
+          btnEl.innerHTML = mod.type === 'copy-url'
+            ? '<span class="icon">🔗</span> 保存网址'
+            : '<span class="icon">↓</span> 立即下载'
+        }, 3000)
+      }
+
+      function render() {
+        var data = siteData
+        var html = ''
+        data.modules.forEach(function (m) {
+          html += '<div class="card">'
+          html += '  <div class="card-head">'
+          html += '    <span class="card-id">' + m.id + '</span>'
+          html += '    <span class="card-name">' + m.name + '</span>'
+          html += '  </div>'
+          if (m.subtitle) html += '  <div class="card-sub">' + m.subtitle + '</div>'
+          html += '  <div class="card-desc">' + (m.desc || '') + '</div>'
+          html += '  <button class="card-btn">'
+          html += m.type === 'copy-url'
+            ? '<span class="icon">🔗</span> 保存网址'
+            : '<span class="icon">↓</span> 立即下载'
+          html += '  </button>'
+          html += '</div>'
+        })
+        container.innerHTML = html
+
+        var btns = container.querySelectorAll('.card-btn')
+        data.modules.forEach(function (m, idx) {
+          btns[idx].addEventListener('click', function (e) {
+            handleBtnClick(m, e.currentTarget)
+          })
+        })
+
+        var f = data.footer
+        if (f) {
+          var fHtml = ''
+          if (f.author) fHtml += '<div>作者：' + f.author + '</div>'
+          var social = []
+          if (f.douyin) social.push('抖音：' + f.douyin)
+          if (f.xiaohongshu) social.push('小红书：' + f.xiaohongshu)
+          if (social.length) fHtml += '<div>' + social.join(' | ') + '</div>'
+          var ver = []
+          if (f.version) ver.push(f.version)
+          if (f.updated) ver.push(f.updated)
+          if (ver.length) fHtml += '<div>' + ver.join(' · ') + '</div>'
+          footerEl.innerHTML = fHtml
+        }
+      }
+
+      /* —— 信封打开 —— */
+      var envOverlay = document.getElementById('envOverlay')
+      var envOpened = false
+      envOverlay.addEventListener('click', function () {
+        if (envOpened) return
+        envOpened = true
+        envOverlay.classList.add('open')
+        startSilk()
+        setTimeout(function () {
+          envOverlay.style.display = 'none'
+        }, 1000)
+      })
+
+      render()
+    })()
+  </script>
+</body>
+</html>
